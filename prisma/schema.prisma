@@ -1,0 +1,40 @@
+// Destination Tracker Database Schema
+// PostgreSQL on Neon Cloud
+
+generator client {
+  provider        = "prisma-client" // or `prisma-client-js`
+  output          = "../generated/prisma"
+  engineType      = "client" // enable Prisma ORM without Rust
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Model untuk menyimpan tempat-tempat tujuan jalan-jalan
+model Destination {
+  id            String    @id @default(cuid())
+  name          String    // Nama tempat
+  type          String    // Kategori: KULINER / HIBURAN / LAINNYA
+  googleMapUrl  String?   // Link Google Maps
+  description   String?   // Deskripsi singkat
+  notes         String?   // Catatan tambahan
+  visited       Boolean   @default(false) // Status sudah dikunjungi atau belum
+  visitDate     DateTime? // Tanggal kunjungan
+  rating        Float?    // Rating 1-5 (Rata-rata)
+  ratingAvav    Int?      // Rating Avav
+  ratingUti     Int?      // Rating Uti
+  imageUrl      String?   // URL foto tempat (opsional)
+  priority      String    @default("NORMAL") // Prioritas: LOW / NORMAL / HIGH
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Model untuk menyimpan konfigurasi aplikasi
+model AppConfig {
+  id        String   @id @default(cuid())
+  key       String   @unique // Contoh: "access_password"
+  value     String   // Password yang disimpan
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
