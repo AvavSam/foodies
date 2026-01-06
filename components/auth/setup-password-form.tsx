@@ -7,8 +7,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
-import { Loader2, Lock, Shield, Sparkles } from 'lucide-react'
+import { Loader2, Lock } from "lucide-react";
 import { useAuthStore } from '@/store/auth-store'
+import Image from "next/image";
 
 export function SetupPasswordForm() {
   const [password, setPassword] = useState('')
@@ -59,23 +60,16 @@ export function SetupPasswordForm() {
 
       <Card className="w-full max-w-md shadow-2xl border-border/60 rounded-3xl relative z-10 bg-card/80 backdrop-blur-sm">
         <CardHeader className="space-y-4 text-center pb-2 pt-8">
-          <div className="flex justify-center mb-2">
-            <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center shadow-xl shadow-primary/25 relative">
-              <Shield className="w-10 h-10 text-primary-foreground" />
-              <div className="absolute -top-1 -right-1 w-6 h-6 bg-accent rounded-lg flex items-center justify-center">
-                <Sparkles className="w-3.5 h-3.5 text-accent-foreground" />
-              </div>
+          <div className="flex justify-center mb-4">
+            <div className="relative w-24 h-24">
+              <Image src="/logotrans.webp" alt="Logo" fill className="object-contain drop-shadow-xl" priority />
             </div>
           </div>
           <div>
-            <CardTitle className="text-2xl md:text-3xl font-bold text-foreground">
-              Setup Password 🔐
-            </CardTitle>
+            <CardTitle className="text-2xl md:text-3xl font-bold text-foreground">Setup Password 🔐</CardTitle>
             <p className="text-lg font-medium text-primary mt-1">mAU Jalan-Jalannnnn</p>
           </div>
-          <CardDescription className="text-base text-muted-foreground">
-            Buat password untuk mengamankan aplikasi
-          </CardDescription>
+          <CardDescription className="text-base text-muted-foreground">Buat password untuk mengamankan aplikasi</CardDescription>
         </CardHeader>
         <CardContent className="px-8 pb-8">
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -118,27 +112,21 @@ export function SetupPasswordForm() {
               </div>
             </div>
 
-            <Button
-              type="submit"
-              className="w-full h-14 text-base font-medium bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 mt-2"
-              disabled={loading}
-            >
+            <Button type="submit" className="w-full h-14 text-base font-medium bg-primary hover:bg-primary/90 rounded-xl shadow-lg shadow-primary/25 mt-2" disabled={loading}>
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                   Memproses...
                 </>
               ) : (
-                '✨ Setup Password'
+                "✨ Setup Password"
               )}
             </Button>
           </form>
 
-          <p className="text-xs text-center text-muted-foreground mt-8">
-            © 2026 Selamalan. Made with ❤️
-          </p>
+          <p className="text-xs text-center text-muted-foreground mt-8">© 2026 Semalaman. Made with ❤️</p>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

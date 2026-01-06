@@ -2,6 +2,39 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { isAuthenticated } from '@/lib/auth'
 
+// GET single destination
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params
+
+    const destination = await db.destination.findUnique({
+      where: { id }
+    })
+
+    if (!destination) {
+      return NextResponse.json(
+        { error: 'Destination not found' },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({
+      success: true,
+      data: destination
+    })
+
+  } catch (error) {
+    console.error('Get destination error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    )
+  }
+}
+
 // PATCH update destination
 export async function PATCH(
   request: NextRequest,

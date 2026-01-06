@@ -121,31 +121,29 @@ export default function Home() {
       <Header onRefresh={fetchDestinations} onLogout={handleLogout} />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-6 md:px-6 lg:px-8 pb-24">
-        {/* Welcome Section */}
-        <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Selamat datang! 👋</h2>
-          <p className="text-muted-foreground">Kelola daftar tempat jalan-jalan favorit kamu</p>
-        </div>
+      <main className="max-w-7xl mx-auto px-4 py-8 md:px-6 lg:px-8 pb-24">
+        {/* Welcome Section & Action */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight mb-2">Selamat datang! 👋</h2>
+            <p className="text-muted-foreground text-sm md:text-base">Kelola daftar tempat jalan-jalan favorit kamu</p>
+          </div>
 
-        {/* Stats Summary */}
-        {stats && <StatsSummary stats={stats} />}
-
-        {/* Action Bar */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          {/* Add Button */}
           <Button
             onClick={() => {
               setInitialFormData(null);
               setFormMode("create");
               setFormOpen(true);
             }}
-            className="h-12 px-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 rounded-xl font-medium"
+            className="h-11 px-6 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 rounded-xl font-semibold transition-all hover:scale-105 active:scale-95"
           >
             <Plus className="mr-2 h-5 w-5" />
             Tambah Tempat Baru
           </Button>
         </div>
+
+        {/* Stats Summary */}
+        {stats && <StatsSummary stats={stats} />}
 
         {/* Filters */}
         <FilterBar
